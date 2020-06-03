@@ -1,4 +1,5 @@
 public interface Player {
-    public void makeAMove();
-    public void chooseColor();
+    public int attemptMove(int boardWidth);
+    public char getName();
+    public void setName(char playerName);
 }
