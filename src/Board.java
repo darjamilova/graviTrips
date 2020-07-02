@@ -53,8 +53,7 @@ public class Board {
 
     public boolean saveMoveIfPossible(Player player, int positionWidth) {
         positionWidth--; //board starts with 1, array starts with 0
-        if (positionWidth >= getWidth()) return false;
-        else if (positionWidth <= 0) return false;
+        if (boardTable[0][positionWidth] != EMPTY_FIELD) return false;
         else
             for (int i = getHeight() - 1; i > -1; i--) {
                 if (isPositionAvailable(positionWidth, i)) {

@@ -5,22 +5,25 @@ public class Main {
         Board board = referee.prepareBoard();
 
         Player player=new PlayerPerson();
-        System.out.println(player.attemptMove(board.getWidth()));
-        System.out.println(player.attemptMove(board.getWidth()));
-        System.out.println(player.attemptMove(board.getWidth()));
-        System.out.println(player.attemptMove(board.getWidth()));
-        System.out.println(player.attemptMove(board.getWidth()));
-        System.out.println(player.attemptMove(board.getWidth()));
-        System.out.println(player.attemptMove(board.getWidth()));
-        System.out.println(player.attemptMove(board.getWidth()));
-        System.out.println(player.attemptMove(board.getWidth()));
-        System.out.println(player.attemptMove(board.getWidth()));
-        System.out.println(player.attemptMove(board.getWidth()));
-        System.out.println(player.attemptMove(board.getWidth()));
-//        player.setName('A');
-//        board.saveMoveIfPossible(player, 4);
-//        board.saveMoveIfPossible(player, 4);
-//        board.drawField();
+        player.setName('A');
+        Player player2=new PlayerPerson();
+        player2.setName('B');
+        board.saveMoveIfPossible(player2, player.attemptMove(board.getWidth()));
+        board.saveMoveIfPossible(player, player.attemptMove(board.getWidth()));
+        board.saveMoveIfPossible(player2, player.attemptMove(board.getWidth()));
+        board.saveMoveIfPossible(player2, player.attemptMove(board.getWidth()));
+        board.saveMoveIfPossible(player, player.attemptMove(board.getWidth()));
+        board.saveMoveIfPossible(player2, player.attemptMove(board.getWidth()));
+        board.saveMoveIfPossible(player2, player.attemptMove(board.getWidth()));
+        board.saveMoveIfPossible(player2, player.attemptMove(board.getWidth()));
+        board.saveMoveIfPossible(player, player.attemptMove(board.getWidth()));
+        board.saveMoveIfPossible(player2, player.attemptMove(board.getWidth()));
+
+        board.drawField();
+
+
+        System.out.println(referee.checkForWin(board, player2));
+
 
 
     }
