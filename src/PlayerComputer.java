@@ -3,10 +3,12 @@ import java.util.concurrent.ThreadLocalRandom;
 public class PlayerComputer implements Player{
 
     private char name;
+    private Board board;
 
     @Override
-    public int attemptMove(int boardWidth) {
-        int randomNum = ThreadLocalRandom.current().nextInt(1, boardWidth+1);
+    public int attemptMove(Board board) {
+        System.out.println("It is player's "+ this.getName()+ " turn!");
+        int randomNum = ThreadLocalRandom.current().nextInt(1, board.getWidth() +1);
         return randomNum;
     }
 

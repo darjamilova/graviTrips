@@ -3,14 +3,18 @@ import java.lang.reflect.Array;
 public class Board {
     private int width;
     private int height;
-
+    private int spaceForMove;
     private final char EMPTY_FIELD = 'z';
-
     private char[][] boardTable;
+
+    public int getSpaceForMove() {
+        return spaceForMove;
+    }
 
     public Board(int width, int height) {
         this.width = width;
         this.height = height;
+        spaceForMove=width*height;
         boardTable = new char[height][width];
 
         for (int i = 0; i < height; i++) {
@@ -58,6 +62,7 @@ public class Board {
             for (int i = getHeight() - 1; i > -1; i--) {
                 if (isPositionAvailable(positionWidth, i)) {
                     savePlayerMove(player, positionWidth, i);
+                    spaceForMove--;
                     return true;
                 }
             }

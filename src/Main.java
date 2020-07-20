@@ -4,27 +4,24 @@ public class Main {
         Referee referee = new Referee();
         Board board = referee.prepareBoard();
 
-        Player player=new PlayerPerson();
-        player.setName('A');
-        Player player2=new PlayerPerson();
-        player2.setName('B');
-        board.saveMoveIfPossible(player2, player.attemptMove(board.getWidth()));
-        board.saveMoveIfPossible(player, player.attemptMove(board.getWidth()));
-        board.saveMoveIfPossible(player2, player.attemptMove(board.getWidth()));
-        board.saveMoveIfPossible(player2, player.attemptMove(board.getWidth()));
-        board.saveMoveIfPossible(player, player.attemptMove(board.getWidth()));
-        board.saveMoveIfPossible(player2, player.attemptMove(board.getWidth()));
-        board.saveMoveIfPossible(player2, player.attemptMove(board.getWidth()));
-        board.saveMoveIfPossible(player2, player.attemptMove(board.getWidth()));
-        board.saveMoveIfPossible(player, player.attemptMove(board.getWidth()));
-        board.saveMoveIfPossible(player2, player.attemptMove(board.getWidth()));
+        Player player = referee.getPlayerType();
+        player.setName('X');
+        Player player2 = referee.getPlayerType();
+        player2.setName('O');
 
-        board.drawField();
+        boolean isWin;
+        do {
+            if (board.getSpaceForMove() == 0) break;
+            board.drawField();
+            referee.processPlayerMove(player, board);
+            isWin = referee.checkForWin(board, player);
+            if (!isWin) {
+                board.drawField();
+                referee.processPlayerMove(player2, board);
+                isWin = referee.checkForWin(board, player2);
+            }
+        } while (!isWin);
 
-
-        System.out.println(referee.checkForWin(board, player2));
-
-
-
+        referee.detectWinner(board);
     }
 }

@@ -1,5 +1,5 @@
 public interface Player {
-    public int attemptMove(int boardWidth);
+    public int attemptMove(Board board);
     public char getName();
     public void setName(char playerName);
 }

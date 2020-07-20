@@ -1,4 +1,5 @@
 public class Referee {
+    public static Player winner;
     public Board prepareBoard() {
         System.out.println("Input board width");
         int width = Integer.valueOf(Helper.readFromConsole());
@@ -10,7 +11,7 @@ public class Referee {
     public Player getPlayerType() {
         System.out.println("Is Player a computer? Y/N");
         String answer = Helper.readFromConsole();
-        if (answer == "Y") {
+        if (answer.equals("Y")) {
             return new PlayerComputer();
         } else {
             return new PlayerPerson();
@@ -27,13 +28,16 @@ public class Referee {
                         checkDiagonalDownForPoint(i, j, board, playerName) ||
                         checkVerticalForPoint(i, j, board, playerName) ||
                         checkHorizontalForPoint(i, j, board, playerName);
-            if (isWin) return isWin;
+                if (isWin) {
+                    winner = player;
+                    return isWin;
+                }
             }
         }
         return isWin;
     }
 
-    public boolean checkHorizontalForPoint(int pointHeight, int pointWidth, Board board, char playerName) {
+    private boolean checkHorizontalForPoint(int pointHeight, int pointWidth, Board board, char playerName) {
         boolean isWin = true;
         if (board.getWidth() - pointWidth < 4)
             return false;
@@ -80,7 +84,7 @@ public class Referee {
 
     private boolean checkDiagonalDownForPoint(int pointHeight, int pointWidth, Board board, char playerName) {
         boolean isWin = true;
-        if (board.getHeight() - pointHeight < 3 || board.getWidth() - pointWidth < 3)
+        if (board.getHeight() - pointHeight < 4 || board.getWidth() - pointWidth < 4)
             return false;
         else {
             char[][] boardTable = board.getBoardTable();
@@ -91,5 +95,24 @@ public class Referee {
             }
         }
         return isWin;
+    }
+
+    public void processPlayerMove(Player player, Board board) {
+        boolean moveIsPossible;
+
+        System.out.println();
+        do {
+            int moveIndex = player.attemptMove(board);
+            moveIsPossible = board.saveMoveIfPossible(player, moveIndex);
+            if (!moveIsPossible) System.out.println("Oooops! Something went wrong here!");
+        } while (!moveIsPossible);
+    }
+
+    public void detectWinner(Board board){
+        board.drawField();
+        if (board.getSpaceForMove() == 0) {
+            System.out.println("\n\nCongratulations! It is a draw!");
+
+        } else System.out.println("\n\nCongratulations! Winner is " + Referee.winner.getName());
     }
 }
