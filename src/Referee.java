@@ -10,8 +10,8 @@ public class Referee {
 
     public Player getPlayerType() {
         System.out.println("Is Player a computer? Y/N");
-        String answer = Helper.readFromConsole();
-        if (answer.equals("Y")) {
+        String answer = Helper.readFromConsole().toLowerCase();
+        if (answer.equals("y")) {
             return new PlayerComputer();
         } else {
             return new PlayerPerson();
