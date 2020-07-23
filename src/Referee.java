@@ -1,5 +1,5 @@
 public class Referee {
-    public static Player winner;
+    private Player winner;
     public Board prepareBoard() {
         System.out.println("Input board width");
         int width = Integer.valueOf(Helper.readFromConsole());
@@ -29,7 +29,7 @@ public class Referee {
                         checkVerticalForPoint(i, j, board, playerName) ||
                         checkHorizontalForPoint(i, j, board, playerName);
                 if (isWin) {
-                    winner = player;
+                    this.winner = player;
                     return isWin;
                 }
             }
@@ -113,6 +113,6 @@ public class Referee {
         if (board.getSpaceForMove() == 0) {
             System.out.println("\n\nCongratulations! It is a draw!");
 
-        } else System.out.println("\n\nCongratulations! Winner is " + Referee.winner.getName());
+        } else System.out.println("\n\nCongratulations! Winner is " + this.winner.getName());
     }
 }
