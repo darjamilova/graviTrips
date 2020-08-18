@@ -1,3 +1,5 @@
+package GraviTrips;
+
 public class PlayerPerson implements Player {
     private char name;
 

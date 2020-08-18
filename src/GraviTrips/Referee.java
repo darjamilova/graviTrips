@@ -1,3 +1,5 @@
+package GraviTrips;
+
 public class Referee {
     private Player winner;
     public Board prepareBoard() {
@@ -9,7 +11,7 @@ public class Referee {
     }
 
     public Player getPlayerType() {
-        System.out.println("Is Player a computer? Y/N");
+        System.out.println("Is GraviTrips.Player a computer? Y/N");
         String answer = Helper.readFromConsole().toLowerCase();
         if (answer.equals("y")) {
             return new PlayerComputer();
@@ -110,9 +112,9 @@ public class Referee {
 
     public void detectWinner(Board board){
         board.drawField();
-        if (board.getSpaceForMove() == 0) {
+        if (winner==null) {
             System.out.println("\n\nCongratulations! It is a draw!");
 
-        } else System.out.println("\n\nCongratulations! Winner is " + this.winner.getName());
+        } else System.out.println("\n\nCongratulations! Winner is " + winner.getName());
     }
 }

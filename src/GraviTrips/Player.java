@@ -1,3 +1,5 @@
+package GraviTrips;
+
 public interface Player {
     public int attemptMove(Board board);
     public char getName();

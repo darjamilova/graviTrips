@@ -1,9 +1,10 @@
+package GraviTrips;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 public class PlayerComputer implements Player{
 
     private char name;
-    private Board board;
 
     @Override
     public int attemptMove(Board board) {

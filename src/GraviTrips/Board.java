@@ -1,4 +1,4 @@
-import java.lang.reflect.Array;
+package GraviTrips;
 
 public class Board {
     private int width;
@@ -61,17 +61,12 @@ public class Board {
         else
             for (int i = getHeight() - 1; i > -1; i--) {
                 if (isPositionAvailable(positionWidth, i)) {
-                    savePlayerMove(player, positionWidth, i);
+                    boardTable[i][positionWidth] = player.getName();
                     spaceForMove--;
                     return true;
                 }
             }
         return false;
-    }
-
-    private void savePlayerMove(Player player, int width, int height) {
-        boardTable[height][width] = player.getName();
-
     }
 
     private boolean isPositionAvailable(int width, int height) {
